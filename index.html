@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tell us how you're feeling and watch the page transform.">
+  <title>How Are You Feeling?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Nunito:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="wave-overlay" aria-hidden="true"></div>
+  <div class="chaos-overlay" aria-hidden="true"></div>
+
+  <!-- Screen 1: Name Entry -->
+  <main id="screen-name" class="container screen-name">
+    <h1 class="heading">What's your name?</h1>
+    <div class="name-input-group">
+      <input type="text" id="name-input" class="name-input" placeholder="Type your name..." autocomplete="off">
+      <button id="btn-enter" class="enter-btn">Enter</button>
+    </div>
+  </main>
+
+  <!-- Screen 2: Greeting (shown briefly) -->
+  <main id="screen-greeting" class="container screen-greeting hidden">
+    <h1 class="heading greeting-text" id="greeting-text"></h1>
+  </main>
+
+  <!-- Screen 3: Mood Selection -->
+  <main id="screen-mood" class="container screen-mood hidden">
+    <h1 class="heading">How are you feeling?</h1>
+    <div class="button-group">
+      <button id="btn-productive" class="mood-btn">Productive</button>
+      <button id="btn-chill" class="mood-btn">Chill</button>
+      <button id="btn-chaos" class="mood-btn">Chaos</button>
+    </div>
+  </main>
+
+  <!-- Mood Log -->
+  <section id="mood-log" class="mood-log hidden" aria-label="Mood history">
+    <h2 class="mood-log-title">Mood Log</h2>
+    <div id="mood-log-entries" class="mood-log-entries"></div>
+  </section>
+
+  <!-- Chaos Meter -->
+  <div id="chaos-meter" class="chaos-meter hidden" aria-label="Chaos meter">
+    <span class="chaos-meter-title">CHAOS METER</span>
+    <div class="chaos-meter-track">
+      <div id="chaos-meter-fill" class="chaos-meter-fill"></div>
+    </div>
+    <span id="chaos-meter-pct" class="chaos-meter-pct">0%</span>
+  </div>
+
+  <!-- Reset Button (only visible at 100% chaos) -->
+  <button id="btn-reset" class="reset-btn hidden">Reset</button>
+  <script src="app.js"></script>
+</body>
+
+</html>

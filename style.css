@@ -1,0 +1,918 @@
+/* ===========================
+   Reset & Base
+   =========================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===========================
+   Layout
+   =========================== */
+.container {
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   Name Entry Screen
+   =========================== */
+.name-input-group {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.name-input {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.75rem 1.25rem;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 6px;
+  background: transparent;
+  color: #1a1a1a;
+  outline: none;
+  width: 260px;
+  transition: border-color 0.2s ease;
+}
+
+.name-input::placeholder {
+  color: #a0a0a0;
+}
+
+.name-input:focus {
+  border-color: #1a1a1a;
+}
+
+.enter-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #4a8c6f;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.enter-btn:hover {
+  background-color: #3d7a5f;
+}
+
+.enter-btn:active {
+  transform: scale(0.97);
+}
+
+/* ===========================
+   Greeting Screen
+   =========================== */
+.greeting-text {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+/* ===========================
+   Heading
+   =========================== */
+.heading {
+  font-size: 2.25rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  color: #1a1a1a;
+  transition: color 0.6s ease, font-family 0.4s ease, font-weight 0.4s ease;
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+.button-group {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mood-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.75rem 2rem;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 6px;
+  background: transparent;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.6s ease,
+    border-color 0.6s ease,
+    color 0.6s ease,
+    font-family 0.4s ease,
+    border-radius 0.6s ease;
+  outline: none;
+}
+
+.mood-btn:hover {
+  border-color: #1a1a1a;
+}
+
+.mood-btn:focus-visible {
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.15);
+}
+
+/* ===========================
+   Productive Theme
+   =========================== */
+body.productive {
+  background-color: #d4edda;
+  color: #1b2e1b;
+}
+
+.productive .heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  color: #1b2e1b;
+}
+
+.productive .mood-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  border: 1.5px solid #4a8c6f;
+  color: #1b2e1b;
+  border-radius: 4px;
+  background: transparent;
+}
+
+.productive .mood-btn:hover {
+  border-color: #2d6a4f;
+  background-color: rgba(74, 140, 111, 0.08);
+}
+
+.productive .mood-btn.active {
+  background-color: #4a8c6f;
+  color: #ffffff;
+  border-color: #4a8c6f;
+}
+
+/* ===========================
+   Floating Emoji
+   =========================== */
+.floating-emoji {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation: emojiLife 3s ease-in-out forwards;
+  user-select: none;
+}
+
+@keyframes emojiLife {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(0);
+  }
+
+  20% {
+    opacity: 0.7;
+    transform: scale(1) translateY(-10px);
+  }
+
+  80% {
+    opacity: 0.7;
+    transform: scale(1) translateY(-30px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+}
+
+/* ===========================
+   Wave Overlay (Chill Theme)
+   =========================== */
+.wave-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  overflow: hidden;
+}
+
+.wave-overlay::before,
+.wave-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  border-radius: 45% 48% 43% 47%;
+  opacity: 0.35;
+}
+
+.wave-overlay::before {
+  background: linear-gradient(135deg, #e8c8d4 0%, #dbb5a0 100%);
+  animation: waveFloat 6s ease-in-out infinite;
+}
+
+.wave-overlay::after {
+  background: linear-gradient(135deg, #c9b8db 0%, #f0d5c4 100%);
+  animation: waveFloat 8s ease-in-out infinite reverse;
+  opacity: 0.25;
+}
+
+body.chill .wave-overlay {
+  opacity: 1;
+}
+
+@keyframes waveFloat {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  25% {
+    transform: rotate(2deg) translateY(-15px);
+  }
+
+  50% {
+    transform: rotate(-1deg) translateY(-5px);
+  }
+
+  75% {
+    transform: rotate(1.5deg) translateY(-12px);
+  }
+}
+
+/* ===========================
+   Chill Theme
+   =========================== */
+body.chill {
+  background-color: #f3e8ef;
+  color: #4a3a42;
+}
+
+.chill .heading {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  color: #4a3a42;
+  letter-spacing: 0.01em;
+}
+
+.chill .mood-btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  border: 1.5px solid #d4a89c;
+  color: #5c4450;
+  border-radius: 24px;
+  background: rgba(255, 248, 243, 0.5);
+}
+
+.chill .mood-btn:hover {
+  border-color: #c89080;
+  background-color: rgba(255, 240, 230, 0.7);
+}
+
+.chill .mood-btn.active {
+  background: linear-gradient(135deg, #dbb5a0, #c9b8db);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* ===========================
+   Chaos Overlay (Swirling Gradient)
+   =========================== */
+.chaos-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  background: conic-gradient(from 0deg,
+      #1a0011, #3d0033, #5c0a2e, #2b0a3d,
+      #4a0028, #1a0022, #330044, #1a0011);
+  animation: chaosSwirl 6s linear infinite;
+}
+
+body.chaos .chaos-overlay {
+  opacity: 1;
+}
+
+@keyframes chaosSwirl {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===========================
+   Chaos Theme
+   =========================== */
+body.chaos {
+  background-color: #0d0011;
+  color: #f0e0ff;
+}
+
+.chaos .container {
+  animation: chaosWobble 3s ease-in-out infinite;
+}
+
+@keyframes chaosWobble {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(0.4deg);
+  }
+
+  50% {
+    transform: rotate(-0.3deg);
+  }
+
+  75% {
+    transform: rotate(0.2deg);
+  }
+}
+
+.chaos .heading {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  color: #ff4466;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  animation: glitchFlicker 2s steps(10, end) infinite;
+}
+
+@keyframes glitchFlicker {
+
+  0%,
+  100% {
+    text-shadow: 2px 0 #ff0055, -2px 0 #00ffcc;
+  }
+
+  10% {
+    text-shadow: -2px 1px #ff0055, 2px -1px #00ffcc;
+  }
+
+  20% {
+    text-shadow: 2px -2px #ff0055, -1px 2px #00ffcc;
+    opacity: 0.95;
+  }
+
+  30% {
+    text-shadow: -1px 2px #ff0055, 1px -2px #00ffcc;
+  }
+
+  40% {
+    text-shadow: 2px 1px #ff0055, -2px -1px #00ffcc;
+    opacity: 1;
+  }
+
+  50% {
+    text-shadow: -2px -2px #ff0055, 2px 2px #00ffcc;
+  }
+
+  60% {
+    text-shadow: 3px 0 #ff0055, -3px 0 #00ffcc;
+    opacity: 0.92;
+  }
+
+  70% {
+    text-shadow: -1px 1px #ff0055, 1px -1px #00ffcc;
+  }
+
+  80% {
+    text-shadow: 1px -1px #ff0055, -1px 1px #00ffcc;
+    opacity: 1;
+  }
+
+  90% {
+    text-shadow: -3px 0 #ff0055, 3px 0 #00ffcc;
+  }
+}
+
+.chaos .mood-btn {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  border: 2px solid #ff4466;
+  color: #f0e0ff;
+  border-radius: 2px;
+  background: rgba(255, 68, 102, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  animation: chaosPulse 2s ease-in-out infinite;
+}
+
+@keyframes chaosPulse {
+
+  0%,
+  100% {
+    border-color: #ff4466;
+    box-shadow: 0 0 8px rgba(255, 68, 102, 0.3);
+  }
+
+  33% {
+    border-color: #cc44ff;
+    box-shadow: 0 0 12px rgba(204, 68, 255, 0.4);
+  }
+
+  66% {
+    border-color: #ff8800;
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.35);
+  }
+}
+
+.chaos .mood-btn:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 68, 102, 0.25);
+  animation: none;
+  box-shadow: 0 0 15px rgba(255, 68, 102, 0.5);
+}
+
+.chaos .mood-btn.active {
+  background: linear-gradient(135deg, #cc0033, #6600aa);
+  color: #ffffff;
+  border-color: #ff4466;
+  box-shadow: 0 0 20px rgba(255, 68, 102, 0.6);
+  animation: none;
+}
+
+/* ===========================
+   Floating Chaos Quotes
+   =========================== */
+.floating-quote {
+  position: fixed;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  color: rgba(255, 68, 102, 0.5);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  white-space: nowrap;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: quoteDrift 5s ease-in-out forwards;
+}
+
+@keyframes quoteDrift {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-3deg);
+  }
+
+  15% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: translateX(40px) translateY(-20px) rotate(2deg);
+  }
+
+  85% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(80px) translateY(-40px) rotate(-1deg);
+  }
+}
+
+/* ===========================
+   Mood Log
+   =========================== */
+.mood-log {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 360px;
+  max-height: 220px;
+  z-index: 2;
+  border-radius: 12px 12px 0 0;
+  border: 1.5px solid #d0d0d0;
+  border-bottom: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.6s ease,
+    border-color 0.6s ease,
+    color 0.6s ease;
+  overflow: hidden;
+}
+
+.mood-log-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.6rem 1rem 0.4rem;
+  color: #888;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  transition: color 0.6s ease, font-family 0.4s ease, border-color 0.6s ease;
+}
+
+.mood-log-entries {
+  overflow-y: auto;
+  padding: 0.4rem 0;
+  flex: 1;
+}
+
+.mood-log-entries::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mood-log-entries::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.mood-log-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  animation: logSlideIn 0.3s ease forwards;
+  transition: color 0.6s ease, font-family 0.4s ease;
+}
+
+.mood-log-entry .log-emoji {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.mood-log-entry .log-text {
+  flex: 1;
+}
+
+.mood-log-entry .log-time {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+@keyframes logSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Productive Log --- */
+.productive .mood-log {
+  background: rgba(212, 237, 218, 0.9);
+  border-color: #4a8c6f;
+}
+
+.productive .mood-log-title {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #2d6a4f;
+  border-bottom-color: rgba(74, 140, 111, 0.15);
+}
+
+.productive .mood-log-entry {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #1b2e1b;
+}
+
+.productive .mood-log-entries::-webkit-scrollbar-thumb {
+  background: rgba(74, 140, 111, 0.3);
+}
+
+/* --- Chill Log --- */
+.chill .mood-log {
+  background: rgba(243, 232, 239, 0.9);
+  border-color: #d4a89c;
+}
+
+.chill .mood-log-title {
+  font-family: 'Nunito', sans-serif;
+  color: #b0857a;
+  border-bottom-color: rgba(212, 168, 156, 0.2);
+}
+
+.chill .mood-log-entry {
+  font-family: 'Nunito', sans-serif;
+  color: #5c4450;
+}
+
+.chill .mood-log-entries::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 156, 0.35);
+}
+
+/* --- Chaos Log --- */
+.chaos .mood-log {
+  background: rgba(13, 0, 17, 0.9);
+  border-color: #ff4466;
+  box-shadow: 0 0 12px rgba(255, 68, 102, 0.2);
+}
+
+.chaos .mood-log-title {
+  font-family: 'Space Mono', monospace;
+  color: #ff4466;
+  border-bottom-color: rgba(255, 68, 102, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.chaos .mood-log-entry {
+  font-family: 'Space Mono', monospace;
+  color: #f0e0ff;
+}
+
+.chaos .mood-log-entries::-webkit-scrollbar-thumb {
+  background: rgba(255, 68, 102, 0.35);
+}
+
+/* ===========================
+   Chaos Meter
+   =========================== */
+.chaos-meter {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  transition: color 0.6s ease;
+}
+
+.chaos-meter-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #888;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  transition: color 0.6s ease, font-family 0.4s ease;
+}
+
+.chaos-meter-track {
+  width: 14px;
+  height: 180px;
+  border-radius: 7px;
+  border: 1.5px solid #d0d0d0;
+  background: rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.6s ease, background-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.chaos-meter-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(to top, #ff4466, #cc44ff);
+  transition: height 0.4s ease;
+}
+
+.chaos-meter-pct {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #888;
+  transition: color 0.6s ease, font-family 0.4s ease;
+}
+
+/* --- Productive Chaos Meter --- */
+.productive .chaos-meter-title {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #2d6a4f;
+}
+
+.productive .chaos-meter-track {
+  border-color: #4a8c6f;
+  background: rgba(74, 140, 111, 0.05);
+}
+
+.productive .chaos-meter-pct {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #2d6a4f;
+}
+
+/* --- Chill Chaos Meter --- */
+.chill .chaos-meter-title {
+  font-family: 'Nunito', sans-serif;
+  color: #b0857a;
+}
+
+.chill .chaos-meter-track {
+  border-color: #d4a89c;
+  background: rgba(212, 168, 156, 0.08);
+}
+
+.chill .chaos-meter-pct {
+  font-family: 'Nunito', sans-serif;
+  color: #b0857a;
+}
+
+/* --- Chaos Chaos Meter --- */
+.chaos .chaos-meter-title {
+  font-family: 'Space Mono', monospace;
+  color: #ff4466;
+}
+
+.chaos .chaos-meter-track {
+  border-color: #ff4466;
+  background: rgba(255, 68, 102, 0.05);
+  box-shadow: 0 0 10px rgba(255, 68, 102, 0.2);
+}
+
+.chaos .chaos-meter-fill {
+  box-shadow: 0 0 8px rgba(255, 68, 102, 0.4);
+}
+
+.chaos .chaos-meter-pct {
+  font-family: 'Space Mono', monospace;
+  color: #ff4466;
+}
+
+/* ===========================
+   Explosion State (100% Chaos)
+   =========================== */
+body.exploded {
+  animation: explosionShake 0.15s linear infinite,
+    explosionFlash 0.3s steps(1, end) infinite;
+}
+
+@keyframes explosionShake {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-8px, 6px);
+  }
+
+  40% {
+    transform: translate(6px, -8px);
+  }
+
+  60% {
+    transform: translate(-6px, -4px);
+  }
+
+  80% {
+    transform: translate(8px, 4px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes explosionFlash {
+  0% {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  50% {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+body.exploded .container,
+body.exploded .wave-overlay,
+body.exploded .chaos-overlay,
+body.exploded .mood-log,
+body.exploded .chaos-meter {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* Reset Button */
+.reset-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10;
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 2rem;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  cursor: pointer;
+  animation: resetPulse 1s ease-in-out infinite;
+}
+
+.reset-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  animation: none;
+}
+
+@keyframes resetPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
